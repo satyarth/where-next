@@ -1,7 +1,38 @@
 from coordinate import Coordinate
 import math
 
+
+def antipode(a):
+	lat = -a.lat
+	if a.lon < 0:
+		lon = a.lon + 180
+	else:
+		lon = a.lon - 180
+	return Coordinate((lat, lon))
+
+# Normailizes a vector
+
+def norm(a):
+	x = a.x
+	y = a.y
+	z = a.z
+	norm_factor = 1/math.sqrt(x**2 + y**2 + z**2)
+	x *= norm_factor
+	y *= norm_factor
+	z *= norm_factor
+	return Coordinate((x, y, z), 'cartesian')
+
 # Returns the cross product of two position vectors
+
+def norm(a):
+	x = a.x
+	y = a.y
+	z = a.z
+	norm_factor = 1/math.sqrt(x**2 + y**2 + z**2)
+	x *= norm_factor
+	y *= norm_factor
+	z *= norm_factor
+	return Coordinate((x, y, z), 'cartesian')
 
 def cross(a, b):
 	x = a.y*b.z - a.z*b.y
@@ -32,16 +63,23 @@ def midpoint(a, b):
 
 def perpendicular_bisector(a, b):
 	midpt = midpoint(a, b)
-	geodesic = cross(a, b)
+	geodesic = norm(cross(a, b))
 
-	return cross(midpt, geodesic)
+	return norm(cross(midpt, geodesic))
 
 # Returns a tuple of the two points at which the geodesics perpendicular to the given vectors intesect
 
 def intersections(a, b):
-	return (cross(a, b), cross(b, a))
+	return (norm(cross(a, b)), norm(cross(b, a)))
 
 # Returns a tuple of the two circumcenters of the triangle defined by the three given points
 
 def circumcenters(a, b, c):
 	return intersections(perpendicular_bisector(a, b), perpendicular_bisector(b, c))
+
+def circumcenter(a, b, c):
+	ccs = circumcenters(a, b, c)
+	if distance(ccs[0], a) >  distance(ccs[1], a):
+		return ccs[0]
+	else:
+		return ccs[1]
