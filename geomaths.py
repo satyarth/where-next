@@ -1,6 +1,7 @@
 from coordinate import Coordinate
 import math
 
+# Returns the antipose of a point
 
 def antipode(a):
 	lat = -a.lat
@@ -10,7 +11,7 @@ def antipode(a):
 		lon = a.lon - 180
 	return Coordinate((lat, lon))
 
-# Normailizes a vector
+# Normalizes a vector
 
 def norm(a):
 	x = a.x
@@ -23,16 +24,6 @@ def norm(a):
 	return Coordinate((x, y, z), 'cartesian')
 
 # Returns the cross product of two position vectors
-
-def norm(a):
-	x = a.x
-	y = a.y
-	z = a.z
-	norm_factor = 1/math.sqrt(x**2 + y**2 + z**2)
-	x *= norm_factor
-	y *= norm_factor
-	z *= norm_factor
-	return Coordinate((x, y, z), 'cartesian')
 
 def cross(a, b):
 	x = a.y*b.z - a.z*b.y
@@ -77,9 +68,9 @@ def intersections(a, b):
 def circumcenters(a, b, c):
 	return intersections(perpendicular_bisector(a, b), perpendicular_bisector(b, c))
 
-def circumcenter(a, b, c):
-	ccs = circumcenters(a, b, c)
-	if distance(ccs[0], a) >  distance(ccs[1], a):
-		return ccs[0]
-	else:
-		return ccs[1]
+
+def furthest(points, origin):
+	max(points, key = lambda point: distance(point, origin))
+
+def closest(points, origin):
+	min(points, key = lambda point: distance(point, origin))
