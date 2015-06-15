@@ -17,10 +17,10 @@ def norm(a):
 	x = a.x
 	y = a.y
 	z = a.z
-	norm_factor = 1/math.sqrt(x**2 + y**2 + z**2)
-	x *= norm_factor
-	y *= norm_factor
-	z *= norm_factor
+	norm_factor = a.mod()
+	x /= norm_factor
+	y /= norm_factor
+	z /= norm_factor
 	return Coordinate((x, y, z), 'cartesian')
 
 # Returns the cross product of two position vectors
@@ -54,7 +54,7 @@ def midpoint(a, b):
 
 def perpendicular_bisector(a, b):
 	midpt = midpoint(a, b)
-	geodesic = norm(cross(a, b))
+	geodesic = cross(a, b).normalize()
 
 	return norm(cross(midpt, geodesic))
 
@@ -70,7 +70,7 @@ def circumcenters(a, b, c):
 
 
 def furthest(points, origin):
-	max(points, key = lambda point: distance(point, origin))
+	return max(points, key = lambda point: distance(point, origin))
 
 def closest(points, origin):
-	min(points, key = lambda point: distance(point, origin))
+	return min(points, key = lambda point: distance(point, origin))
