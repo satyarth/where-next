@@ -13,15 +13,15 @@ def antipode(a):
 
 # Normalizes a vector
 
-def norm(a):
-	x = a.x
-	y = a.y
-	z = a.z
-	norm_factor = a.mod()
-	x /= norm_factor
-	y /= norm_factor
-	z /= norm_factor
-	return Coordinate((x, y, z), 'cartesian')
+# def norm(a):
+# 	x = a.x
+# 	y = a.y
+# 	z = a.z
+# 	norm_factor = a.mod()
+# 	x /= norm_factor
+# 	y /= norm_factor
+# 	z /= norm_factor
+# 	return Coordinate((x, y, z), 'cartesian')
 
 # Returns the cross product of two position vectors
 
@@ -56,12 +56,12 @@ def perpendicular_bisector(a, b):
 	midpt = midpoint(a, b)
 	geodesic = cross(a, b).normalize()
 
-	return norm(cross(midpt, geodesic))
+	return cross(midpt, geodesic).normalize()
 
 # Returns a tuple of the two points at which the geodesics perpendicular to the given vectors intesect
 
 def intersections(a, b):
-	return (norm(cross(a, b)), norm(cross(b, a)))
+	return (cross(a, b).normalize(), cross(b, a).normalize())
 
 # Returns a tuple of the two circumcenters of the triangle defined by the three given points
 

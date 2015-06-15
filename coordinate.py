@@ -52,3 +52,12 @@ class Coordinate:
 
 	def mod(self):
 		return math.sqrt(self.x**2 + self.y**2 + self.z**2)
+
+	def normalize(self):
+		mod = self.mod()
+		self.x /= mod
+		self.y /= mod
+		self.z /= mod
+		self.cartesian_to_spherical()
+		self.spherical_to_geo()
+		return self
