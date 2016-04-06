@@ -68,6 +68,8 @@ def intersections(a, b):
 def circumcenters(a, b, c):
 	return intersections(perpendicular_bisector(a, b), perpendicular_bisector(b, c))
 
+def circumcenter(a, b, c):
+	return min(circumcenters(a, b, c), key=lambda point: distance(point, a))
 
 def furthest(points, origin):
 	return max(points, key = lambda point: distance(point, origin))
