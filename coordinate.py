@@ -1,5 +1,5 @@
 import math
-import s_ymp_y
+import sympy
 
 class Coordinate:
 	def __init__(self, vector, s_ystem='geo'):
