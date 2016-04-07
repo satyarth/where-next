@@ -48,7 +48,7 @@ class Coordinate:
 		return (self.polar, self.azimuthal)
 		
 	def cartesian(self):
-		return (self.x, self.x, self.z)
+		return (self.x, self.y, self.z)
 
 	def mod(self):
 		return math.sqrt(self.x**2 + self.y**2 + self.z**2)
