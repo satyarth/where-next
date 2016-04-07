@@ -1,27 +1,14 @@
+import unittest
 from coordinate import Coordinate
-from geomaths import *
-from pygeocoder import Geocoder
-from pygeolib import GeocoderError
 
-cities = ['Abidjan', 'Manila', 'Auckland']
-coordinates = []
+# cities = ['Abidjan', 'Manila', 'Auckland']
 
-
-for city in cities:
-	print(Geocoder.geocode(city).coordinates)
-	coordinates.append(Coordinate(Geocoder.geocode(city).coordinates))
+class TestCase(unittest.TestCase):
+	def test_conversion(self):
+		c = Coordinate((0, 0))
+		self.assertEqual(c.cartesian(), (1, 0, 0))
 
 
-cc = circumcenter(coordinates[0],coordinates[1],coordinates[2])
 
-print(cc.geo(), antipode(cc).geo())
-print(distance(coordinates[0], cc), distance(coordinates[0], antipode(cc)))
-print(Geocoder.reverse_geocode(cc.geo()[0], cc.geo()[1]))
-
-# a = Coordinate((48.24,7.73))
-# b = Coordinate((66.38, 78))
-# c = Coordinate((30.5, 97.7))
-
-# cc = circumcenter(a,b,c)
-# print cc.geo(), antipode(cc).geo()
-# print distance(b, cc), distance(a, antipode(cc))
+if __name__ == '__main__':
+    unittest.main()
