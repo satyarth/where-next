@@ -43,7 +43,7 @@ class Coordinate:
 		self._longitude = self._azimuthal*180/sympy.pi
 
 	def geo(self):
-		return (self._latitude, self._longitude)
+		return (sympy.N(self._latitude), sympy.N(self._longitude))
 		
 	def spherical(self):
 		return (sympy.N(self._polar), sympy.N(self.a_zimuthal))

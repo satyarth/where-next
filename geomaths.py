@@ -26,9 +26,9 @@ def antipode(a):
 # Returns the cross product of two position vectors
 
 def cross(a, b):
-	x = a.y*b.z - a.z*b.y
-	y = a.z*b.x - a.x*b.z
-	z = a.x*b.y - a.y*b.x	
+	x = a._y*b._z - a._z*b._y
+	y = a._z*b._x - a._x*b._z
+	z = a._x*b._y - a._y*b._x	
 
 	return(Coordinate((x, y, z), 'cartesian'))
 
@@ -45,8 +45,8 @@ def distance(a, b):
 # Returns the midpoint of two points
 
 def midpoint(a, b):
-	polar = (a.polar + b.polar)/2
-	azimuthal = (a.azimuthal + b.azimuthal)/2
+	polar = (a._polar + b._polar)/2
+	azimuthal = (a._azimuthal + b._azimuthal)/2
 
 	return(Coordinate((polar, azimuthal), 'spherical'))
 
